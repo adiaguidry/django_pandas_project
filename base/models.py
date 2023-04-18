@@ -19,5 +19,3 @@ class Chore(models.Model):
         ordering = ['complete']
 
 
-
-
