@@ -1,7 +1,8 @@
 from django.urls import path
-from . import views
+from .views import PendingChore, ChoreDetail
 
 
 urlpatterns = [
-    path('', views.hello)
+    path('', PendingChore.as_view(), name='pending'),
+    path('chore/<int:pk>', ChoreDetail.as_view(), name='chore')
 ]
