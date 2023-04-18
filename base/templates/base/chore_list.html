@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Never give up</h1>
+{% for chore in object_list %}
+<p>{{ chore.description }}</p>
+{% empty %}
+<h3>All Chores Completed</h3>
+{% endfor %}
+</body>
+</html>

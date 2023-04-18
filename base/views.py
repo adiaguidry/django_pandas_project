@@ -1,8 +1,16 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from .models import Chore
 
 
 # Create your views here.
-def hello(request):
-    return render(request, "index.html", {'name': 'Adia'})
+class PendingChore(ListView):
+    model = Chore
+    context_object_name = 'pending'
+
+
+class ChoreDetail(DetailView):
+    model = Chore
+    context_object_name = 'chore'
+    template_name = 'base/chore.html'
 
