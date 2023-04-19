@@ -5,9 +5,21 @@
     <title>Title</title>
 </head>
 <body>
+{% if request.user.is_authenticated %}
+{{ request.user }}
+    <a href=""> Logout</a>
+{% else %}
+    <a href="">Login</a>
+{% endif %}
+
 <h1>Never give up </h1>
+<a href="{% url 'create-chore' %}"><h2>Create Chore</h2></a>
 {% for chore in chores %}
-<p>{{ chore.title }} </p>
+<p>{{ chore.title }}
+    <a href="{% url 'chore' chore.id %}">see details</a>
+    <a href="{% url 'edit-chore' chore.id %}"> edit </a>
+    <a href="{% url 'delete-chore' chore.id %}">delete</a>
+</p>
 
 {% empty %}
 <h3> All chores are complete </h3>

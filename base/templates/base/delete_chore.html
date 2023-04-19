@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1>Delete Chore</h1>
+  <p>You are about to delete your chore: {{ chore.title }}</p>
+  <form method="POST" action="">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+  </form>
+</body>
+</html>
