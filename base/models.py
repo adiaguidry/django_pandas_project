@@ -28,6 +28,13 @@ class Chore(models.Model):
                                     null=True, blank=True,
                                     related_name='chores')
 
+    # if chore is complete add value of chore to assigned_to__account.
+    def add_value(self, son):
+        self.assigned_to = son
+        if self.assigned_to and self.complete:
+            self.assigned_to.account += self.value
+            self.assigned_to.save()
+
     def __str__(self):
         return self.title
 

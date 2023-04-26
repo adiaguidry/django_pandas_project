@@ -25,33 +25,18 @@
     </div>
 
     <div class="col-sm-9">
-      <h4><small class="font-weight-bold">CURRENT CHORE</small></h4>
-      <hr>
-      <h2>{{ chore.title }}</h2>
-      <h6><span class="glyphicon glyphicon-time"></span> Created at {{chore.created}}</h6>
-      <h6>Details:</h6>
 
-      <p>{{ chore.description }}</p>
-      <br><br>
-
-      <h4><small class="font-weight-bold">COMPLETED CHORES</small></h4>
+      <h4><small class="font-weight-bold">UNASSIGNED CHORES</small></h4>
       <hr>
-      {% for chore in chores %}
-        {% if chore.complete %}
+      {% for chore in unassigned %}
         <h2>{{ chore.title }}</h2>
         <h6><span class="glyphicon glyphicon-time"></span> Created - {{chore.created}}</h6>
-        <h6>Details:</h6>
-
         <p>{{ chore.description }}</p>
-      <p><span class="badge badge-success">Earned </span> ${{ chore.value }}</p>
+      <p><span class="badge badge-success">Earn </span> ${{ chore.value }}</p>
+      <p><button class="btn btn-sm btn-danger"><a class="text-white" href="{% url 'edit-chore' chore.id %}">Claim chore</a></span></button> </p>
       <hr>
-        {% endif %}
         {% empty %}
-    {% if chores %}
-        <p> no completed chores, get to work!</p>
-    {% else %}
-        <p> great work!</p>
-    {% endif %}
+        <p> All chores assigned at this time, check back later gater!</p>
 
     </div>
   </div>

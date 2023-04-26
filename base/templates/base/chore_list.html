@@ -1,30 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% if request.user.is_authenticated %}
-{{ request.user }}
-    <a href="{% url 'logout'%}"> Logout</a>
-{% else %}
-    <a href="{% url 'login'%}">Login</a>
+{% extends 'base/my_style.html' %}
+
+{% block content %}
+
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <p><button class="btn btn-info"><a class="text-white" href="{% url 'create-chore' %}">Create a new chore</a></button></p>
+        <p><button class="btn btn-primary"><a class="text-white" href="{% url 'unassigned' %}">Claim a new chore</a></button></p>
+        {% load static %}
+        <p><img style="height=100px;width: 100px;" src="{% static 'base/cleaning.png' %}" alt="cleaning img"></p>
+
+    </div>
+    <div class="col-sm-8 text-left">
+        {% if request.user.is_authenticated %}
+      <h1>Welcome {{ request.user }} </h1>
+        <hr>
+
+
 {% endif %}
 
-<h1>Never give up </h1>
-<a href="{% url 'create-chore' %}"><h2>Create Chore</h2></a>
+
 {% for chore in chores %}
-<p>{{ chore.title }}
-    <a href="{% url 'chore' chore.id %}">see details</a>
-    <a href="{% url 'edit-chore' chore.id %}"> edit </a>
-    <a href="{% url 'delete-chore' chore.id %}">delete</a>
-</p>
-
+    {% if not chore.complete %}
+    <p>{{ chore.title }} ${{ chore.value }}
+        <a href="{% url 'chore' chore.id %}"><span class="badge badge-warning">See Details</span></a>
+        <a href="{% url 'edit-chore' chore.id %}"><span class="badge badge-success">Edit</span></a>
+        <a href="{% url 'delete-chore' chore.id %}"><span class="badge badge-danger">Delete</span></a>
+    </p>
+    {% endif %}
 {% empty %}
-<h3> All chores are complete </h3>
-
+    {% if chores %}
+        <p>All chores are completed</p>
+    {% else %}
+        <p>No Chores here for ya</p>
+    {% endif %}
 {% endfor %}
 
-</body>
-</html>
+    </div>
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+        <div class="card card border-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">ACCOUNT</h5>
+                <h6 class="card-subtitle mb-2 text-muted">total amount</h6>
+        </div>
+        <div class="card-footer text-white bg-success">${{ account }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+

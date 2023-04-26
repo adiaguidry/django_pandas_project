@@ -1,15 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-  <h1>Create Chore</h1>
-  <form method="POST" action="">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="submit">
-  </form>
-</body>
-</html>
+{% extends 'base/my_style.html' %}
+
+{% block content %}
+<section class="ftco-section mb-4">
+  <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-5">
+        <h1 class="heading-section">Create a New Chore</h1>
+      </div>
+    </div>
+<div class="row justify-content-center">
+<div class="col-md-12">
+<div class="wrapper">
+<div class="row no-gutters">
+<div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+<div class="contact-wrap w-100 p-md-5 p-4">
+<h3 class="mb-4">New Chore</h3>
+<div id="form-message-warning" class="mb-4"></div>
+
+<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+  {% csrf_token %}
+<div class="row">
+<div class="col-md-12">
+<div class="form-group">
+<label class="label" for="title">Chore {{form.title.label}}</label>
+  <br>
+  {{form.title}}
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label class="label" for="name">Chore {{form.value.label}}</label>
+  <br>
+  {{ form.value }}
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label class="label" for="email">Chore Assigned to</label>
+<input type="email" class="form-control" name="" id="" placeholder="{{request.user}}">
+</div>
+</div>
+<div class="col-md-12">
+<div class="form-group">
+<label class="label" for="#">{{ form.description.label }}</label>
+  <br>
+  {{ form.description }}
+</div>
+</div>
+ <div class="form-check">
+   {{ form.complete }}
+  <label class="form-check-label" for="exampleCheck1">{{ form.complete.label }}</label>
+</div>
+<div class="col-md-12">
+<div class="form-group">
+<input type="submit" value="Submit" class="btn btn-primary">
+<div class="submitting"></div>
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+<div class="col-lg-4 col-md-5 d-flex align-items-stretch">
+<div class="bg-danger text-white w-100 p-md-5 p-4">
+<h3 class="text-white">Commit and Earn</h3>
+<p class="mb-4">Create your opportunity to earn with a new chore</p>
+<div class="dbox w-100 d-flex align-items-start">
+<div class="icon d-flex align-items-center justify-content-center">
+<span class="fa fa-map-marker"></span>
+</div>
+<div class="text pl-3">
+<p>Give your job a reasonable value and come back once its complete!</p>
+</div>
+</div>
+<div class="dbox w-100 d-flex align-items-center">
+<div class="icon d-flex align-items-center justify-content-center">
+<span class="fa fa-phone"></span>
+</div>
+<div class="text pl-3">
+<p><span>5 min job:</span> $1</p>
+</div>
+</div>
+<div class="dbox w-100 d-flex align-items-center">
+<div class="icon d-flex align-items-center justify-content-center">
+<span class="fa fa-paper-plane"></span>
+</div>
+<div class="text pl-3">
+<p><span>10 min job:</span> $3</p>
+</div>
+</div>
+<div class="dbox w-100 d-flex align-items-center">
+<div class="icon d-flex align-items-center justify-content-center">
+<span class="fa fa-globe"></span>
+</div>
+<div class="text pl-3">
+<p><span>30 min job:</span> $5</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+{% endblock content %}
